@@ -8,8 +8,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean
-    public WebClient capturaWebClient(WebClient.Builder builder){
-        return builder.baseUrl("http://localhost:8085/api/capturas").build();
+    public WebClient capturaWebClient(){
+        return WebClient.builder()
+            .baseUrl("http://localhost:8085/api/capturas")
+            .build();
     }
 
 }
