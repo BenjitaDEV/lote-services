@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.caleta.lote.dto.CreateLoteRequest;
+import com.caleta.lote.dto.UpdateLoteRequest;
+import com.caleta.lote.exception.ResourceNotFoundException;
+import com.caleta.lote.model.Lote;
 import com.caleta.lote.services.LoteService;
-import com.caleta.lote.dto.*;
-import com.caleta.lote.exception.*;
-import com.caleta.lote.mapper.LoteMapper;
-import com.caleta.lote.model.*;
-import com.caleta.lote.repository.*;
 
 import jakarta.validation.Valid;
 
@@ -60,7 +59,7 @@ public class LoteController {
     //CREATE
     @PostMapping
     public ResponseEntity<Lote> crearLote(@RequestBody CreateLoteRequest request){
-        Lote nuevoLote = loteService.saveLote(LoteMapper.toModel(request));
+        Lote nuevoLote = loteService.saveLote(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoLote);
     }
 
@@ -68,7 +67,7 @@ public class LoteController {
     @PutMapping("/{id}")
     public ResponseEntity<Lote> actualizarLote(@PathVariable Long id, @Valid @RequestBody UpdateLoteRequest request){
 
-        Lote loteActualizado = loteService.updateLote(id, LoteMapper.toModel(id, request));
+        Lote loteActualizado = loteService.updateLote(id, request);
 
         if(loteActualizado == null){
             throw new ResourceNotFoundException("Lote no encontrado con id: " + id);

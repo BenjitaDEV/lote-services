@@ -1,13 +1,14 @@
 package com.caleta.lote.mapper;
 
-import com.caleta.lote.dto.*;
+import com.caleta.lote.dto.CreateLoteRequest;
+import com.caleta.lote.dto.UpdateLoteRequest;
 import com.caleta.lote.model.Lote;
 
 public class LoteMapper {
 
     public static Lote toModel(CreateLoteRequest request){
         return new Lote(
-            0L,
+            null,
             request.capturaId(),
             request.precioBase(),
             "DISPONIBLE"
