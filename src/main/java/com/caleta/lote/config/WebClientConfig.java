@@ -10,7 +10,7 @@ public class WebClientConfig {
     @Bean
     public WebClient capturaWebClient(){
         return WebClient.builder()
-            .baseUrl("http://localhost:8085/api/capturas")
+            .baseUrl("https://captura-services.onrender.com")
             .build();
     }
 
